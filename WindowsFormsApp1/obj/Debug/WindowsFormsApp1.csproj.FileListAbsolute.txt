@@ -1,0 +1,26 @@
+E:\Office\SQL\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+E:\Office\SQL\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+E:\Office\SQL\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+E:\Office\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+E:\Office\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
+E:\Office\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+E:\Office\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+E:\Office\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+E:\Office\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+E:\Office\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+E:\Office\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+E:\Office - CEL\SQL\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+E:\Office - CEL\SQL\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+E:\Office - CEL\SQL\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+E:\Office - CEL\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+E:\Office - CEL\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
+E:\Office - CEL\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.AdminLogin.resources
+E:\Office - CEL\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+E:\Office - CEL\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Student_Management_System.resources
+E:\Office - CEL\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+E:\Office - CEL\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+E:\Office - CEL\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+E:\Office - CEL\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+E:\Office - CEL\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.StudentLogin.resources
+E:\Office - CEL\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.AdminPortal.resources
+E:\Office - CEL\SQL\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.StudentPortal.resources
