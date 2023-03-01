@@ -65,6 +65,7 @@
             this.Controls.Add(this.btnAdminLogin);
             this.Name = "Student_Management_System";
             this.Text = "Student_Management_System";
+            this.Load += new System.EventHandler(this.Student_Management_System_Load);
             this.ResumeLayout(false);
 
         }

@@ -25,7 +25,7 @@ namespace WindowsFormsApp1
 
         
 
-        DateTime dt;
+        string dt;
 
         //public int Id { get { return Id; } set { Id = value; } }
         //public string email { get { return email; } set { email = value; } }
@@ -44,50 +44,77 @@ namespace WindowsFormsApp1
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
-
-            try
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                Id = Convert.ToInt32(idTextBox.Text);
-                SqlCommand cd = new SqlCommand("Select * from studentTab where stdID = '" + Id + "'", conn);
-                SqlDataReader dr = cd.ExecuteReader();
-
-                if (dr.Read())
+                conn.Open();
+                using (SqlTransaction tr = conn.BeginTransaction())
                 {
-                    //Id = dr.GetInt32(0);
-                    name = dr.GetString(1);
-                    dept = dr.GetString(2);
-                    sem = (float)dr.GetDouble(3);
-                    cgpa = (float)dr.GetDouble(4);
-                    phn = dr.GetInt64(5);
-                    email = dr.GetString(6);
-                    pass = dr.GetString(7);
-                    gender = dr.GetString(8);
-                    dt = dr.GetDateTime(9);
+                    try
+                    {
+                        Id = Convert.ToInt32(idTextBox.Text);
+                        SqlCommand cd = new SqlCommand("Select * from studentTab where stdID = '" + Id + "'", conn, tr);
+                        cd.ExecuteNonQuery();
+                        tr.Commit();
+                        SqlDataReader dr = cd.ExecuteReader();
 
-                    nameLabel.Text = name;
-                    deptLabel.Text = dept;
-                    semLabel.Text = Convert.ToString(sem);
-                    cgpaLabel.Text = Convert.ToString(cgpa);
-                    phnLabel.Text = Convert.ToString(phn);
-                    emailLabel.Text = email;
-                    passLabel.Text = pass;
-                    genLabel.Text = gender;
-                    dobLabel.Text = Convert.ToString(dt.ToString("dd-MM-yyyy"));
+                        if (dr.Read())
+                        {
+                            //Id = dr.GetInt32(0);
+                            name = dr.GetString(1);
+                            dept = dr.GetString(2);
+                            sem = (float)dr.GetDouble(3);
+                            cgpa = (float)dr.GetDouble(4);
+                            phn = dr.GetInt64(5);
+                            email = dr.GetString(6);
+                            pass = dr.GetString(7);
+                            gender = dr.GetString(8);
+                            dt = Convert.ToString(dr.GetDateTime(9));
+
+                            nameLabel.Text = name;
+                            deptLabel.Text = dept;
+                            semLabel.Text = Convert.ToString(sem);
+                            cgpaLabel.Text = Convert.ToString(cgpa);
+                            phnLabel.Text = Convert.ToString(phn);
+                            emailLabel.Text = email;
+                            passLabel.Text = pass;
+                            genLabel.Text = gender;
+                            //dobLabel.Text = Convert.ToString(dt.ToString("dd-MM-yyyy"));
+                            dobLabel.Text = dt;
+                        }
+                        else
+                        {
+                            nameLabel.Text = " ";
+                            deptLabel.Text = " ";
+                            semLabel.Text = " ";
+                            cgpaLabel.Text = " ";
+                            phnLabel.Text = " ";
+                            emailLabel.Text = " ";
+                            passLabel.Text = " ";
+                            genLabel.Text = " ";
+                            dobLabel.Text = " ";
+
+                            MessageBox.Show("No data found!");
+                        }
+                    }
+                    catch
+                    {
+                        tr.Rollback();
+                        MessageBox.Show("Error occurred");
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
                 }
             }
-            catch
-            {
-                MessageBox.Show("Error occurred");
-            }
-            finally
-            {
-                conn.Close();
-            }
+
+            
 
 
         }
+
+
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
             idLabel.Show();
@@ -109,8 +136,8 @@ namespace WindowsFormsApp1
             phnTextBox.Text = Convert.ToString(phn);
             emailTextBox.Text = email;
             passTextBox.Text = pass;
-            genComboBox.Text = gender; 
-            dt = DateTime.Parse(dateTimePicker1.Text);
+            genComboBox.Text = gender;
+            //dt = DateTime.Parse(dateTimePicker1.Text);
 
             idTextBox.Hide();
             nameLabel.Hide();
@@ -124,11 +151,74 @@ namespace WindowsFormsApp1
             dobLabel.Hide();
 
             btnDelete.Hide();
-            btnSave.Show();
+            btnUpdate.Show();
             btnEdit.Hide();
             btnCancel.Show();
 
             
+        }
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            idLabel.Hide();
+            nameTextBox.Show();
+            deptTextBox.Show();
+            semTextBox.Show();
+            cgpaTextBox.Show();
+            phnTextBox.Show();
+            emailTextBox.Show();
+            passTextBox.Show();
+            genComboBox.Show();
+            dateTimePicker1.Show();
+
+            idTextBox.Hide();
+            nameLabel.Hide();
+            deptLabel.Hide();
+            semLabel.Hide();
+            cgpaLabel.Hide();
+            phnLabel.Hide();
+            emailLabel.Hide();
+            passLabel.Hide();
+            genLabel.Hide();
+            dobLabel.Hide();
+
+        }
+
+        private void btnSave_Click_1(object sender, EventArgs e)
+        {
+            name = nameTextBox.Text;
+            dept = deptTextBox.Text;
+            sem = (float) Convert.ToDouble(semTextBox.Text);
+            cgpa = (float) Convert.ToDouble(cgpaTextBox.Text);
+            phn = Convert.ToInt64(phnTextBox.Text);
+            email = emailTextBox.Text;
+            pass = passTextBox.Text;
+            gender = genComboBox.Text;
+            dt = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlTransaction tr = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        SqlCommand cd  = new SqlCommand("Insert into studentTab values ( '" + name + "', '" + dept + "', '" + sem + "', '" + cgpa + "', '" + phn + "', '" + email + "', '" + pass + "', '" + gender + "', '" + dob + "') ", conn, tr);
+                        cd.ExecuteNonQuery();
+                        tr.Commit();
+                        MessageBox.Show("Successfully Inserted!");
+                    }
+                    catch
+                    {
+                        tr.Rollback();
+                        MessageBox.Show("Error Occurred");
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -156,7 +246,7 @@ namespace WindowsFormsApp1
             dobLabel.Show();
 
             btnDelete.Show();
-            btnSave.Hide();
+            btnUpdate.Hide();
             btnEdit.Show();
             btnCancel.Hide();
 
@@ -170,23 +260,44 @@ namespace WindowsFormsApp1
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
-
-            try
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                Id = Convert.ToInt32(idTextBox.Text);
-                SqlCommand cd = new SqlCommand("Delete from studentTab where stdID = '" + Id + "'", conn);
+                conn.Open();
+                using (SqlTransaction tr = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        Id = Convert.ToInt32(idTextBox.Text);
+                        SqlCommand cd = new SqlCommand("Delete from studentTab where stdID = '" + Id + "'", conn, tr);
+                        cd.ExecuteNonQuery();
+                        tr.Commit();
+                        MessageBox.Show("Deleted Successfully!");
+
+                        idTextBox.Clear();
+                        nameLabel.Text = " ";
+                        deptLabel.Text = " ";
+                        semLabel.Text = " ";
+                        cgpaLabel.Text = " ";
+                        phnLabel.Text = " ";
+                        emailLabel.Text = " ";
+                        passLabel.Text = " ";
+                        genLabel.Text = " ";
+                        dobLabel.Text = " ";
+                    }
+                    catch
+                    {
+                        tr.Rollback();
+                        MessageBox.Show("Error Occurred");
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+
                 
             }
-            catch
-            {
-
-            }
-            finally
-            {
-                conn.Close();
-            }
+            
         }
     }
 }

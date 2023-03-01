@@ -30,5 +30,10 @@ namespace WindowsFormsApp1
             f3.Show();
             this.Hide();
         }
+
+        private void Student_Management_System_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

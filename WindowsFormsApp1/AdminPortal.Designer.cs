@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.passTextBox = new System.Windows.Forms.TextBox();
-            this.phnTextBox = new System.Windows.Forms.TextBox();
-            this.emailTextBox = new System.Windows.Forms.TextBox();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.passLabel = new System.Windows.Forms.Label();
             this.phnLabel = new System.Windows.Forms.Label();
             this.emailLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
@@ -43,10 +38,15 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dobLabel = new System.Windows.Forms.Label();
-            this.genComboBox = new System.Windows.Forms.ComboBox();
             this.genLabel = new System.Windows.Forms.Label();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.genComboBox = new System.Windows.Forms.ComboBox();
+            this.phnTextBox = new System.Windows.Forms.TextBox();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
+            this.dobLabel = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.passLabel = new System.Windows.Forms.Label();
+            this.passTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -59,7 +59,7 @@
             this.cgpaLabel = new System.Windows.Forms.Label();
             this.idLabel = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.deptTextBox = new System.Windows.Forms.TextBox();
@@ -67,6 +67,8 @@
             this.cgpaTextBox = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnInsert = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -97,56 +99,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(356, 347);
             this.panel2.TabIndex = 34;
-            // 
-            // passTextBox
-            // 
-            this.passTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.passTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.passTextBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passTextBox.Location = new System.Drawing.Point(146, 263);
-            this.passTextBox.Name = "passTextBox";
-            this.passTextBox.Size = new System.Drawing.Size(176, 25);
-            this.passTextBox.TabIndex = 55;
-            // 
-            // phnTextBox
-            // 
-            this.phnTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.phnTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.phnTextBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phnTextBox.Location = new System.Drawing.Point(146, 218);
-            this.phnTextBox.Name = "phnTextBox";
-            this.phnTextBox.Size = new System.Drawing.Size(176, 25);
-            this.phnTextBox.TabIndex = 54;
-            // 
-            // emailTextBox
-            // 
-            this.emailTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.emailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.emailTextBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTextBox.Location = new System.Drawing.Point(146, 173);
-            this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(176, 25);
-            this.emailTextBox.TabIndex = 53;
-            // 
-            // nameTextBox
-            // 
-            this.nameTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.nameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nameTextBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameTextBox.Location = new System.Drawing.Point(146, 36);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(176, 25);
-            this.nameTextBox.TabIndex = 50;
-            // 
-            // passLabel
-            // 
-            this.passLabel.AutoSize = true;
-            this.passLabel.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passLabel.Location = new System.Drawing.Point(144, 263);
-            this.passLabel.MinimumSize = new System.Drawing.Size(180, 25);
-            this.passLabel.Name = "passLabel";
-            this.passLabel.Size = new System.Drawing.Size(180, 25);
-            this.passLabel.TabIndex = 47;
             // 
             // phnLabel
             // 
@@ -238,29 +190,25 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "Name:";
             // 
-            // dateTimePicker1
+            // genLabel
             // 
-            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.SystemColors.Control;
-            this.dateTimePicker1.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Arial", 9F);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(148, 127);
-            this.dateTimePicker1.MaxDate = new System.DateTime(2029, 12, 25, 0, 0, 0, 0);
-            this.dateTimePicker1.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(176, 25);
-            this.dateTimePicker1.TabIndex = 56;
-            this.dateTimePicker1.Value = new System.DateTime(2023, 3, 1, 0, 0, 0, 0);
+            this.genLabel.AutoSize = true;
+            this.genLabel.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.genLabel.Location = new System.Drawing.Point(144, 81);
+            this.genLabel.MinimumSize = new System.Drawing.Size(180, 25);
+            this.genLabel.Name = "genLabel";
+            this.genLabel.Size = new System.Drawing.Size(180, 25);
+            this.genLabel.TabIndex = 43;
             // 
-            // dobLabel
+            // nameTextBox
             // 
-            this.dobLabel.AutoSize = true;
-            this.dobLabel.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dobLabel.Location = new System.Drawing.Point(142, 127);
-            this.dobLabel.MinimumSize = new System.Drawing.Size(180, 25);
-            this.dobLabel.Name = "dobLabel";
-            this.dobLabel.Size = new System.Drawing.Size(180, 25);
-            this.dobLabel.TabIndex = 44;
+            this.nameTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.nameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nameTextBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameTextBox.Location = new System.Drawing.Point(146, 36);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(176, 25);
+            this.nameTextBox.TabIndex = 50;
             // 
             // genComboBox
             // 
@@ -277,15 +225,69 @@
             this.genComboBox.Size = new System.Drawing.Size(176, 25);
             this.genComboBox.TabIndex = 57;
             // 
-            // genLabel
+            // phnTextBox
             // 
-            this.genLabel.AutoSize = true;
-            this.genLabel.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.genLabel.Location = new System.Drawing.Point(144, 81);
-            this.genLabel.MinimumSize = new System.Drawing.Size(180, 25);
-            this.genLabel.Name = "genLabel";
-            this.genLabel.Size = new System.Drawing.Size(180, 25);
-            this.genLabel.TabIndex = 43;
+            this.phnTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.phnTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.phnTextBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.phnTextBox.Location = new System.Drawing.Point(146, 218);
+            this.phnTextBox.Name = "phnTextBox";
+            this.phnTextBox.Size = new System.Drawing.Size(176, 25);
+            this.phnTextBox.TabIndex = 54;
+            // 
+            // emailTextBox
+            // 
+            this.emailTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.emailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.emailTextBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailTextBox.Location = new System.Drawing.Point(146, 173);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(176, 25);
+            this.emailTextBox.TabIndex = 53;
+            // 
+            // dobLabel
+            // 
+            this.dobLabel.AutoSize = true;
+            this.dobLabel.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dobLabel.Location = new System.Drawing.Point(142, 127);
+            this.dobLabel.MinimumSize = new System.Drawing.Size(180, 25);
+            this.dobLabel.Name = "dobLabel";
+            this.dobLabel.Size = new System.Drawing.Size(180, 25);
+            this.dobLabel.TabIndex = 44;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.SystemColors.Control;
+            this.dateTimePicker1.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Arial", 9F);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(148, 127);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2029, 12, 25, 0, 0, 0, 0);
+            this.dateTimePicker1.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(176, 25);
+            this.dateTimePicker1.TabIndex = 56;
+            this.dateTimePicker1.Value = new System.DateTime(2023, 3, 1, 0, 0, 0, 0);
+            // 
+            // passLabel
+            // 
+            this.passLabel.AutoSize = true;
+            this.passLabel.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passLabel.Location = new System.Drawing.Point(144, 263);
+            this.passLabel.MinimumSize = new System.Drawing.Size(180, 25);
+            this.passLabel.Name = "passLabel";
+            this.passLabel.Size = new System.Drawing.Size(180, 25);
+            this.passLabel.TabIndex = 47;
+            // 
+            // passTextBox
+            // 
+            this.passTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.passTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.passTextBox.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passTextBox.Location = new System.Drawing.Point(146, 263);
+            this.passTextBox.Name = "passTextBox";
+            this.passTextBox.Size = new System.Drawing.Size(176, 25);
+            this.passTextBox.TabIndex = 55;
             // 
             // label2
             // 
@@ -415,18 +417,18 @@
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = false;
             // 
-            // btnSave
+            // btnUpdate
             // 
-            this.btnSave.BackColor = System.Drawing.Color.DarkGreen;
-            this.btnSave.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(524, 375);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(111, 48);
-            this.btnSave.TabIndex = 44;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnUpdate.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.btnUpdate.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Location = new System.Drawing.Point(524, 375);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(111, 48);
+            this.btnUpdate.TabIndex = 44;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnEdit
             // 
@@ -503,11 +505,39 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // btnInsert
+            // 
+            this.btnInsert.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.btnInsert.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsert.ForeColor = System.Drawing.Color.White;
+            this.btnInsert.Location = new System.Drawing.Point(524, 321);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(111, 48);
+            this.btnInsert.TabIndex = 52;
+            this.btnInsert.Text = "Insert";
+            this.btnInsert.UseVisualStyleBackColor = false;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.Green;
+            this.btnSave.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(652, 321);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(111, 48);
+            this.btnSave.TabIndex = 53;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
+            // 
             // AdminPortal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.cgpaLabel);
             this.Controls.Add(this.semLabel);
@@ -525,8 +555,8 @@
             this.Controls.Add(this.idLabel);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnSave);
             this.Name = "AdminPortal";
             this.Text = "Admin Portal";
             this.Load += new System.EventHandler(this.AdminPortal_Load);
@@ -565,7 +595,7 @@
         private System.Windows.Forms.Label cgpaLabel;
         private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox idTextBox;
@@ -580,5 +610,7 @@
         private System.Windows.Forms.ComboBox genComboBox;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnInsert;
+        private System.Windows.Forms.Button btnSave;
     }
 }

@@ -22,55 +22,69 @@ namespace WindowsFormsApp1
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string connectionString = "Data Source=DESKTOP-1PPGL5P\\SQLEXPRESS;Initial Catalog=StdDB;Integrated Security = True";
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
-
-            string id;
-            string phn;
-            string mail, pass;
-            id = textBox3.Text;
-            phn = textBox1.Text;
-            mail = textBox1.Text;
-            pass = textBox2.Text;
-
-            try
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                if(btnRadio)
+                conn.Open();
+                using (SqlTransaction tr = conn.BeginTransaction())
                 {
-                    SqlCommand cd = new SqlCommand("Select * from studentTab where stdID = '" + id + "' and stdEmail = '" + mail + "' and stdPassword = '" + pass + "'", conn);
-                    SqlDataReader dr = cd.ExecuteReader();
+                    string id;
+                    string phn;
+                    string mail, pass;
+                    id = textBox3.Text;
+                    phn = textBox1.Text;
+                    mail = textBox1.Text;
+                    pass = textBox2.Text;
 
-
-
-                    if (dr.Read())
+                    try
                     {
-                        StudentPortal f = new StudentPortal();
-                        f.setId = textBox3.Text;
-                        f.setEmail = textBox1.Text;
-                        f.Show();
-                        this.Hide();
+                        if (btnRadio)
+                        {
+                            SqlCommand cd = new SqlCommand("Select * from studentTab where stdID = '" + id + "' and stdEmail = '" + mail + "' and stdPassword = '" + pass + "'", conn, tr);
+                            cd.ExecuteNonQuery();
+                            tr.Commit();
+                            SqlDataReader dr = cd.ExecuteReader();
+
+
+
+                            if (dr.Read())
+                            {
+                                StudentPortal f = new StudentPortal();
+                                f.setId = textBox3.Text;
+                                f.setEmail = textBox1.Text;
+                                f.Show();
+                                this.Hide();
+                            }
+                            else
+                                MessageBox.Show("Invalid Id or Email or Password");
+
+                        }
+                        else if (!btnRadio)
+                        {
+                            SqlCommand cd = new SqlCommand("Select * from studentTab where stdID = '" + id + "' and stdPhone = '" + phn + "' and stdPassword = '" + pass + "'", conn, tr);
+                            cd.ExecuteNonQuery();
+                            tr.Commit();
+                            SqlDataReader dr = cd.ExecuteReader();
+
+                            if (dr.Read())
+                            {
+                                StudentPortal f = new StudentPortal();
+                                f.Show();
+                                this.Hide();
+                            }
+                            else
+                                MessageBox.Show("Invalid Id or Phone or Password");
+                        }
                     }
-                    else
-                        MessageBox.Show("Invalid Id or Email or Password");
-
-                }
-                else if (!btnRadio) 
-                {
-                    SqlCommand cd = new SqlCommand("Select * from studentTab where stdID = '" + id + "' and stdPhone = '" + phn + "' and stdPassword = '" + pass + "'", conn);
-                    SqlDataReader dr = cd.ExecuteReader();
-
-                    if (dr.Read())
+                    catch
                     {
-                        StudentPortal f = new StudentPortal();
-                        f.Show();
-                        this.Hide();
+                        tr.Rollback();
+                        MessageBox.Show("Error occurred");
                     }
-                    else
-                        MessageBox.Show("Invalid Id or Phone or Password");
+                    finally { conn.Close(); }
                 }
             }
-            catch { MessageBox.Show("Error occurred"); }
-            finally { conn.Close(); }
+
+            
 
 
 

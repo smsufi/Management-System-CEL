@@ -39,49 +39,59 @@ namespace WindowsFormsApp1
         {
             btnSave.Hide();
             emailTextBox.Text = email;
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
-            try
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                SqlCommand cd = new SqlCommand("Select * from studentTab where stdID = '" + id + "'", conn);
-                SqlDataReader dr = cd.ExecuteReader();
-                if (dr.Read())
+                conn.Open();
+                using (SqlTransaction tr = conn.BeginTransaction())
                 {
-                    
-                    Id = dr.GetInt32(0);
-                    name = dr.GetString(1);
-                    dept = dr.GetString(2);
-                    sem = (float) dr.GetDouble(3);
-                    cgpa = (float) dr.GetDouble(4);
-                    phn = dr.GetInt64(5);
-                    pass = dr.GetString(7);
-                    gender = dr.GetString(8);
-                    //dob = dr.GetString(9);
-                    dt = dr.GetDateTime(9);
+                    try
+                    {
+                        SqlCommand cd = new SqlCommand("Select * from studentTab where stdID = '" + id + "'", conn, tr);
+                        cd.ExecuteNonQuery();
+                        tr.Commit();
+                        SqlDataReader dr = cd.ExecuteReader();
+                        if (dr.Read())
+                        {
+
+                            Id = dr.GetInt32(0);
+                            name = dr.GetString(1);
+                            dept = dr.GetString(2);
+                            sem = (float)dr.GetDouble(3);
+                            cgpa = (float)dr.GetDouble(4);
+                            phn = dr.GetInt64(5);
+                            pass = dr.GetString(7);
+                            gender = dr.GetString(8);
+                            //dob = dr.GetString(9);
+                            dt = dr.GetDateTime(9);
 
 
-                    IdLabel.Text = Convert.ToString(id);
-                    deptLabel.Text = dept;
-                    semLabel.Text = Convert.ToString(sem);
-                    cgpaLabel.Text = Convert.ToString(cgpa);
+                            IdLabel.Text = Convert.ToString(id);
+                            deptLabel.Text = dept;
+                            semLabel.Text = Convert.ToString(sem);
+                            cgpaLabel.Text = Convert.ToString(cgpa);
 
-                    nameLabel.Text = name;
-                    phoneLabel.Text = Convert.ToString(phn);
-                    emailLabel.Text = email;
-                    passLabel.Text = pass;
-                    genderLabel.Text = gender;
-                    //dateTimePicker1.Text = dob;
-                    dobLabel.Text = Convert.ToString(dt.ToString("dd-MM-yyyy"));
+                            nameLabel.Text = name;
+                            phoneLabel.Text = Convert.ToString(phn);
+                            emailLabel.Text = email;
+                            passLabel.Text = pass;
+                            genderLabel.Text = gender;
+                            //dateTimePicker1.Text = dob;
+                            dobLabel.Text = Convert.ToString(dt.ToString("dd-MM-yyyy"));
+                        }
+                    }
+                    catch
+                    {
+                        tr.Rollback();
+                        MessageBox.Show("Error occurred");
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
                 }
             }
-            catch
-            {
-                MessageBox.Show("Error occurred");
-            }
-            finally
-            {
-                conn.Close();
-            }
+                
+            
         }
         private void IdLabel_Click(object sender, EventArgs e)
         {
@@ -152,37 +162,47 @@ namespace WindowsFormsApp1
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
-
-            try
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                //id = IdLabel.Text;
-                Id = Convert.ToInt32(IdLabel.Text);
-                name = nameTextBox.Text;
-                dept = deptLabel.Text;
-                //sem = (float) Convert.ToDouble(semLabel.Text);
-                //cgpa = (float)Convert.ToDouble(cgpaLabel.Text);
-                phn = Convert.ToInt32(phnTextBox.Text);
-                email = emailTextBox.Text;
-                pass = passTextBox.Text;
-                gender = genComboBox.Text;
-                dt = DateTime.Parse(dateTimePicker1.Text);
+                conn.Open();
+                using (SqlTransaction tr = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        //id = IdLabel.Text;
+                        Id = Convert.ToInt32(IdLabel.Text);
+                        name = nameTextBox.Text;
+                        dept = deptLabel.Text;
+                        //sem = (float) Convert.ToDouble(semLabel.Text);
+                        //cgpa = (float)Convert.ToDouble(cgpaLabel.Text);
+                        phn = Convert.ToInt32(phnTextBox.Text);
+                        email = emailTextBox.Text;
+                        pass = passTextBox.Text;
+                        gender = genComboBox.Text;
+                        dt = DateTime.Parse(dateTimePicker1.Text);
 
-                SqlCommand cd = new SqlCommand("Update studentTab set stdName = '" + name + "' where stdID = '" + Id + "'", conn);
-                MessageBox.Show("Successfully Updated!");
+                        SqlCommand cd = new SqlCommand("Update studentTab set stdName = '" + name + "' where stdID = '" + Id + "'", conn, tr);
+                        cd.ExecuteNonQuery();
+                        tr.Commit();
+                        MessageBox.Show("Successfully Updated!");
 
+                    }
+                    catch
+                    {
+                        tr.Rollback();
+                        MessageBox.Show("Error occurred");
+                    }
+                    finally
+                    {
+                        conn.Close();
+
+
+                    }
+                }
             }
-            catch
-            {
-                MessageBox.Show("Error occurred");
-            }
-            finally
-            {
-                conn.Close();
                 
 
-            }
+            
 
 
         }
