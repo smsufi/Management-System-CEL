@@ -39,7 +39,20 @@ namespace WindowsFormsApp1
         private void AdminPortal_Load(object sender, EventArgs e)
         {
 
-
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            try
+            {
+                SqlCommand cd = new SqlCommand("Select * from studentTab", conn);
+                SqlDataAdapter ad = new SqlDataAdapter(cd);
+                DataTable table = new DataTable();
+                ad.Fill(table);
+                allStd.DataSource = table;
+            }
+            catch
+            {
+                MessageBox.Show("Error occcurred");
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -157,6 +170,25 @@ namespace WindowsFormsApp1
 
             
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            try
+            {
+                SqlCommand cd = new SqlCommand("Select * from studentTab", conn);
+                SqlDataAdapter ad = new SqlDataAdapter(cd);
+                DataTable table = new DataTable();
+                ad.Fill(table);
+                allStd.DataSource = table;
+            }
+            catch
+            {
+                MessageBox.Show("Error occcurred");
+            }
+        }
+
         private void btnInsert_Click(object sender, EventArgs e)
         {
             idLabel.Hide();
@@ -180,6 +212,12 @@ namespace WindowsFormsApp1
             passLabel.Hide();
             genLabel.Hide();
             dobLabel.Hide();
+
+            btnDelete.Hide();
+            btnUpdate.Hide();
+            btnEdit.Hide();
+            btnSave.Show();
+            btnCancel.Show();
 
         }
 
@@ -219,6 +257,8 @@ namespace WindowsFormsApp1
 
                 }
             }
+
+            btnCancel.PerformClick();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -250,7 +290,7 @@ namespace WindowsFormsApp1
             btnEdit.Show();
             btnCancel.Hide();
 
-            btnSearch.PerformClick();
+            //btnSearch.PerformClick();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
