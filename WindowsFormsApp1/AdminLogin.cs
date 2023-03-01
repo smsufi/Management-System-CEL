@@ -37,8 +37,8 @@ namespace WindowsFormsApp1
 
             long mbl;
             string mail, pass;
-            mail = textBox1.Text;
-            mbl = Convert.ToInt64(textBox1.Text);
+            
+            
             pass = textBox2.Text;
             
             try
@@ -50,6 +50,8 @@ namespace WindowsFormsApp1
 
                 if (btnRadio)
                 {
+                    mail = textBox1.Text;
+
                     SqlCommand command = new SqlCommand("Select * from adminTab where admEmail = '" + mail + "' and admPassword = '" + pass + "'", conn);
                     SqlDataReader dr = command.ExecuteReader();
                     if (dr.Read())
@@ -64,6 +66,7 @@ namespace WindowsFormsApp1
                 }
                 else if (!btnRadio)
                 {
+                    mbl = Convert.ToInt64(textBox1.Text);
                     SqlCommand command = new SqlCommand("Select * from adminTab where admMobile = '" + mbl + "' and admPassword = '" + pass + "'", conn);
                     SqlDataReader dr = command.ExecuteReader();
                     if (dr.Read())
